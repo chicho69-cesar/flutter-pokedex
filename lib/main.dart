@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
+import 'package:pokedex/screens/screens.dart';
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -7,17 +9,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CupertinoApp(
+    return CupertinoApp(
       title: 'Pokedex',
       debugShowCheckedModeBanner: false,
-      home: CupertinoPageScaffold(
-        navigationBar: CupertinoNavigationBar(
-          middle: Text('Pokedex'),
-        ),
-        child: Center(
-          child: Text('Hello World'),
-        ),
-      ),
+      initialRoute: HomeScreen.routeName,
+      routes: {
+        HomeScreen.routeName: (_) => const HomeScreen()
+      },
     );
   }
 }
