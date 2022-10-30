@@ -13,18 +13,6 @@ class PokemonsResponse {
   String? previous;
   List<Result> results;
 
-  PokemonsResponse copyWith({
-    required int count,
-    required String next,
-    String? previous,
-    required List<Result> results,
-  }) => PokemonsResponse(
-    count: count,
-    next: next,
-    previous: previous,
-    results: results,
-  );
-
   factory PokemonsResponse.fromJson(String str) => PokemonsResponse.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
@@ -52,14 +40,6 @@ class Result {
 
   String name;
   String url;
-
-  Result copyWith({
-    required String name,
-    required String url,
-  }) => Result(
-    name: name,
-    url: url,
-  );
 
   factory Result.fromJson(String str) => Result.fromMap(json.decode(str));
 
