@@ -7,17 +7,14 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Pokedex',
       debugShowCheckedModeBanner: false,
-      initialRoute: HomeScreen.routeName,
-      routes: {
-        HomeScreen.routeName: (_) => const HomeScreen()
-      },
+      home: HomeScreen(),
     );
   }
 }
