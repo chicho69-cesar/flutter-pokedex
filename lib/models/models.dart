@@ -1,0 +1,1 @@
+export 'package:pokedex/models/pokedex_model.dart';
