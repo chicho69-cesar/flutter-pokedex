@@ -6,6 +6,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:pokedex/screens/details_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -31,9 +32,9 @@ class _HomeScreenState extends State<HomeScreen> {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
 
-    Color _greenColor = const Color(0xff2a9d8f);
-    Color _redColor = const Color(0xffe76f51);
-    Color _blueColor = const Color(0xff37A5C6);
+    Color greenColor = const Color(0xff2a9d8f);
+    Color redColor = const Color(0xffe76f51);
+    Color blueColor = const Color(0xff37A5C6);
 
     return SafeArea(
       child: Scaffold(
@@ -171,7 +172,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               onTap: () {
-                                //TODO: AHHHHHHH
+                                Navigator.push(context, MaterialPageRoute(builder: (_) => DetailsScreen(
+                                  heroTag: index, 
+                                  pokemonDetail: pokedex![index], 
+                                  color: pokedex![index]['type'][0] == "Grass" ? Colors.greenAccent : pokedex![index]['type'][0] == "Fire" ? Colors.redAccent
+                                    : pokedex![index]['type'][0] == "Water" ? Colors.blue : pokedex![index]['type'][0] == "Poison" ? Colors.deepPurpleAccent
+                                    : pokedex![index]['type'][0] == "Electric" ? Colors.amber : pokedex![index]['type'][0] == "Rock" ? Colors.grey
+                                    : pokedex![index]['type'][0] == "Ground" ? Colors.brown : pokedex![index]['type'][0] == "Psychic" ? Colors.indigo
+                                    : pokedex![index]['type'][0] == "Fighting" ? Colors.orange : pokedex![index]['type'][0] == "Bug" ? Colors.lightGreenAccent
+                                    : pokedex![index]['type'][0] == "Ghost" ? Colors.deepPurple : pokedex![index]['type'][0] == "Normal" ? Colors.white70 : Colors.pink,
+                                )));
                               },
                             ),
                           );
