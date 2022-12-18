@@ -106,7 +106,13 @@ class Pokemon {
   };
 }
 
-enum Egg { THE_2_KM, NOT_IN_EGGS, THE_5_KM, THE_10_KM, OMANYTE_CANDY }
+enum Egg { 
+  THE_2_KM, 
+  NOT_IN_EGGS, 
+  THE_5_KM, 
+  THE_10_KM, 
+  OMANYTE_CANDY 
+}
 
 final eggValues = EnumValues({
   "Not in Eggs":   Egg.NOT_IN_EGGS,
@@ -140,7 +146,26 @@ class Evolution {
   };
 }
 
-enum Type { FIRE, ICE, FLYING, PSYCHIC, WATER, GROUND, ROCK, ELECTRIC, GRASS, FIGHTING, POISON, BUG, FAIRY, GHOST, DARK, STEEL, DRAGON, NORMAL }
+enum Type { 
+  FIRE, 
+  ICE, 
+  FLYING, 
+  PSYCHIC, 
+  WATER, 
+  GROUND, 
+  ROCK, 
+  ELECTRIC, 
+  GRASS, 
+  FIGHTING, 
+  POISON, 
+  BUG, 
+  FAIRY, 
+  GHOST, 
+  DARK, 
+  STEEL, 
+  DRAGON, 
+  NORMAL 
+}
 
 final typeValues = EnumValues({
   "Bug":      Type.BUG,
