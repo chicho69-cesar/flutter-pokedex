@@ -44,14 +44,14 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Stack(
           children: [
             const Positioned(
-              top: -50,
-              right: -50,
+              top: -60,
+              right: -60,
               child: PokeballImage(
                 width: 200,
               ),
             ),
             Positioned(
-              top: 100,
+              top: 80,
               left: 20,
               child: Text(
                 'Pokedex',
