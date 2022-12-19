@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:pokedex/widgets/widgets.dart';
 
 class DetailsScreen extends StatefulWidget {
   const DetailsScreen({
@@ -32,7 +33,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: widget.color,
+      backgroundColor: widget.pokemonDetail['type'][0] == "Normal"
+        ? Colors.grey : widget.color,
       body: SafeArea(
         child: Stack(
           alignment: Alignment.center,
@@ -100,11 +102,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
             Positioned(
               top: height * 0.18,
               right: -30,
-              child: Image.asset(
-                'assets/images/pokeball.png',
-                height: 200,
-                fit: BoxFit.fitHeight,
-              ),
+              child: const PokeballImage(height: 200),
             ),
             Positioned(
               bottom: 0,
@@ -335,11 +333,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   width: 250,
                   imageUrl: widget.pokemonDetail['img'],
                   fit: BoxFit.cover,
-                  errorWidget: (context, url, error) => Image.asset(
-                    'assets/images/pokeball.png',
-                    height: 200,
-                    fit: BoxFit.fitHeight,
-                  ),
+                  errorWidget: (context, url, error) => const PokeballImage(height: 200),
                 ),
               ),
             ),

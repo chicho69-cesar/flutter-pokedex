@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:http/http.dart' as http;
+import 'package:pokedex/providers/providers.dart';
 import 'package:pokedex/screens/details_screen.dart';
+import 'package:pokedex/widgets/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -41,14 +43,12 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.white,
         body: Stack(
           children: [
-            Positioned(
+            const Positioned(
               top: -50,
               right: -50,
-              child: Image.asset(
-                'assets/images/pokeball.png',
+              child: PokeballImage(
                 width: 200,
-                fit: BoxFit.fitWidth,
-              )
+              ),
             ),
             Positioned(
               top: 100,
@@ -85,23 +85,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: SafeArea(
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: pokedex![index]['type'][0] == "Grass" ? Colors.greenAccent : pokedex![index]['type'][0] == "Fire" ? Colors.redAccent 
-                                      : pokedex![index]['type'][0] == "Water" ? Colors.blue : pokedex![index]['type'][0] == "Poison" ? Colors.deepPurpleAccent 
-                                      : pokedex![index]['type'][0] == "Electric" ? Colors.amber : pokedex![index]['type'][0] == "Rock" ? Colors.grey 
-                                      : pokedex![index]['type'][0] == "Ground" ? Colors.brown : pokedex![index]['type'][0] == "Psychic" ? Colors.indigo 
-                                      : pokedex![index]['type'][0] == "Fighting" ? Colors.orange : pokedex![index]['type'][0] == "Bug" ? Colors.lightGreenAccent 
-                                      : pokedex![index]['type'][0] == "Ghost" ? Colors.deepPurple : pokedex![index]['type'][0] == "Normal" ? Colors.black26 : Colors.pink,
+                                    color: PokedexService.getTypeColor(pokedex![index]['type'][0]),
                                     borderRadius: const BorderRadius.all(Radius.circular(25))
                                   ),
                                   child: Stack(
                                     children: [
-                                      Positioned(
+                                      const Positioned(
                                         top: -10,
                                         right: -10,
-                                        child: Image.asset(
-                                          'assets/images/pokeball.png',
+                                        child: PokeballImage(
                                           height: 100,
-                                          fit: BoxFit.fitHeight,
                                         ),
                                       ),
                                       Positioned(
@@ -116,11 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             placeholder: (context, url) => const Center(
                                               child: CircularProgressIndicator(),
                                             ),
-                                            errorWidget: (context, url, error) => Image.asset(
-                                            'assets/images/pokeball.png',
-                                            height: 150,
-                                            fit: BoxFit.fitHeight,
-                                          ),
+                                            errorWidget: (context, url, error) => const PokeballImage(height: 150),
                                           ),
                                         )
                                       ),
@@ -176,16 +165,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               onTap: () {
-                                print("$index - ${pokedex![index]}");
                                 Navigator.push(context, MaterialPageRoute(builder: (_) => DetailsScreen(
                                   heroTag: index, 
                                   pokemonDetail: pokedex![index], 
-                                  color: pokedex![index]['type'][0] == "Grass" ? Colors.greenAccent : pokedex![index]['type'][0] == "Fire" ? Colors.redAccent
-                                    : pokedex![index]['type'][0] == "Water" ? Colors.blue : pokedex![index]['type'][0] == "Poison" ? Colors.deepPurpleAccent
-                                    : pokedex![index]['type'][0] == "Electric" ? Colors.amber : pokedex![index]['type'][0] == "Rock" ? Colors.grey
-                                    : pokedex![index]['type'][0] == "Ground" ? Colors.brown : pokedex![index]['type'][0] == "Psychic" ? Colors.indigo
-                                    : pokedex![index]['type'][0] == "Fighting" ? Colors.orange : pokedex![index]['type'][0] == "Bug" ? Colors.lightGreenAccent
-                                    : pokedex![index]['type'][0] == "Ghost" ? Colors.deepPurple : pokedex![index]['type'][0] == "Normal" ? Colors.white70 : Colors.pink,
+                                  color: PokedexService.getTypeColor(pokedex![index]['type'][0]),
                                 )));
                               },
                             ),

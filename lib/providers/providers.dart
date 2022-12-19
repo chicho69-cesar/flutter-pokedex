@@ -1,1 +1,1 @@
-export 'package:pokedex/providers/pokedex_provider.dart';
+export 'package:pokedex/providers/pokedex_service.dart';

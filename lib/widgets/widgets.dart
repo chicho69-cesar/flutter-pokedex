@@ -1,0 +1,1 @@
+export 'package:pokedex/widgets/pokeball_image.dart';
