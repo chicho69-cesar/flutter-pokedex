@@ -39,65 +39,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            Positioned(
-              top: 10,
-              left: 15,
-              child: IconButton(
-                padding: const EdgeInsets.all(10),
-                highlightColor: widget.color.withOpacity(0.05),
-                icon: const Icon(Icons.arrow_back_ios, color: Colors.white, size: 30),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
+            _ReturnButton(
+              widget: widget
             ),
-            Positioned(
-              top: 70,
-              left: 20,
-              right: 20,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    widget.pokemonDetail['name'],
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                  Text(
-                    "#00${ widget.pokemonDetail['num'] }",
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 20
-                    ),
-                    textAlign: TextAlign.left,
-                  )
-                ]
-              ),
+            _HeaderInfo(
+              widget: widget
             ),
-            Positioned(
-              top: 110,
-              left: 22,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.2),
-                  borderRadius: const BorderRadius.all(Radius.circular(20))
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    widget.pokemonDetail['type'].join(", "),
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 15
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-              ),
+            _PokemonTypes(
+              widget: widget
             ),
             Positioned(
               top: height * 0.18,
@@ -109,21 +58,112 @@ class _DetailsScreenState extends State<DetailsScreen> {
               height: height, 
               widget: widget
             ),
-            Positioned(
-              top: height * 0.17,
-              left: (width / 2) - 125,
-              child: Hero(
-                tag: widget.heroTag,
-                child: CachedNetworkImage(
-                  height: 250,
-                  width: 250,
-                  imageUrl: widget.pokemonDetail['img'],
-                  fit: BoxFit.cover,
-                  errorWidget: (context, url, error) => const PokeballImage(height: 200),
-                ),
-              ),
+            _PokemonImage(
+              height: height, 
+              width: width, 
+              widget: widget
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ReturnButton extends StatelessWidget {
+  const _ReturnButton({
+    Key? key,
+    required this.widget,
+  }) : super(key: key);
+
+  final DetailsScreen widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: 10,
+      left: 15,
+      child: IconButton(
+        padding: const EdgeInsets.all(10),
+        highlightColor: widget.color.withOpacity(0.05),
+        icon: const Icon(Icons.arrow_back_ios, color: Colors.white, size: 25),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
+    );
+  }
+}
+
+class _HeaderInfo extends StatelessWidget {
+  const _HeaderInfo({
+    Key? key,
+    required this.widget
+  }) : super(key: key);
+
+  final DetailsScreen widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: 70,
+      left: 20,
+      right: 20,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            widget.pokemonDetail['name'],
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 25,
+              fontWeight: FontWeight.bold
+            ),
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.left,
+          ),
+          Text(
+            "#00${ widget.pokemonDetail['num'] }",
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 20
+            ),
+            textAlign: TextAlign.left,
+          )
+        ]
+      ),
+    );
+  }
+}
+
+class _PokemonTypes extends StatelessWidget {
+  const _PokemonTypes({
+    Key? key,
+    required this.widget,
+  }) : super(key: key);
+
+  final DetailsScreen widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: 110,
+      left: 22,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.black.withOpacity(0.2),
+          borderRadius: const BorderRadius.all(Radius.circular(20))
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            widget.pokemonDetail['type'].join(", "),
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 15
+            ),
+            textAlign: TextAlign.left,
+          ),
         ),
       ),
     );
@@ -267,7 +307,7 @@ class _PokemonInformation extends StatelessWidget {
                     SizedBox(
                       width: width * 0.3,
                       child: const Text(
-                        'Pre Evolution', 
+                        'Pre Evolution: ', 
                         style: TextStyle(
                           color: Colors.blueGrey, 
                           fontSize: 17
@@ -316,7 +356,7 @@ class _PokemonInformation extends StatelessWidget {
                     SizedBox(
                       width: width * 0.3,
                       child: const Text(
-                        'Next Evolution', 
+                        'Next Evolution: ', 
                         style: TextStyle(
                           color: Colors.blueGrey, 
                           fontSize: 17
@@ -360,6 +400,37 @@ class _PokemonInformation extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _PokemonImage extends StatelessWidget {
+  const _PokemonImage({
+    Key? key,
+    required this.height,
+    required this.width,
+    required this.widget
+  }) : super(key: key);
+
+  final double height;
+  final double width;
+  final DetailsScreen widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: height * 0.17,
+      left: (width / 2) - 100,
+      child: Hero(
+        tag: widget.heroTag,
+        child: CachedNetworkImage(
+          height: 200,
+          width: 200,
+          imageUrl: widget.pokemonDetail['img'],
+          fit: BoxFit.cover,
+          errorWidget: (context, url, error) => const PokeballImage(height: 200),
         ),
       ),
     );
