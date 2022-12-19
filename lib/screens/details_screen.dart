@@ -89,7 +89,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    widget.pokemonDetail['type'][0],//.join(", "),
+                    widget.pokemonDetail['type'].join(", "),
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 15
@@ -104,224 +104,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
               right: -30,
               child: const PokeballImage(height: 200),
             ),
-            Positioned(
-              bottom: 0,
-              child: Container(
-                width: width,
-                height: height * 0.6,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
-                  color: Colors.white
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 50),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: width * 0.3,
-                              child: const Text(
-                                'Name: ',
-                                style: TextStyle(
-                                  color: Colors.blueGrey,
-                                  fontSize: 17
-                                ),
-                              ),
-                            ),
-                            Text(
-                              widget.pokemonDetail['name'],
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 17,
-                                fontWeight: FontWeight.w600
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: width * 0.3,
-                              child: const Text(
-                                'Weight: ',
-                                style: TextStyle(
-                                  color: Colors.blueGrey,
-                                  fontSize: 17
-                                ),
-                              ),
-                            ),
-                            Text(
-                              widget.pokemonDetail['weight'],
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 17,
-                                fontWeight: FontWeight.w600
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: width * 0.3,
-                              child: const Text(
-                                'Spawn Time: ',
-                                style: TextStyle(
-                                  color: Colors.blueGrey,
-                                  fontSize: 17
-                                ),
-                              ),
-                            ),
-                            Text(
-                              widget.pokemonDetail['spawn_time'],
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 17,
-                                fontWeight: FontWeight.w600
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: width * 0.3,
-                              child: const Text(
-                                'Weakness: ',
-                                style: TextStyle(
-                                  color: Colors.blueGrey,
-                                  fontSize: 17
-                                ),
-                              ),
-                            ),
-                            Text(
-                              widget.pokemonDetail['weakness'] != null 
-                                ? widget.pokemonDetail['weakness'][0].join(", ")
-                                : "Not defined",
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 17,
-                                fontWeight: FontWeight.w600
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: width * 0.3,
-                              child: const Text(
-                                'Pre Evolution', 
-                                style: TextStyle(
-                                  color: Colors.blueGrey, 
-                                  fontSize: 17
-                                ),
-                              ),
-                            ),
-                            Container(
-                              child: widget.pokemonDetail['prev_evolution'] != null
-                              ? SizedBox(
-                                  height: 20,
-                                  width: width * 0.55,
-                                  child: ListView.builder(
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: widget.pokemonDetail['prev_evolution'].length,
-                                    itemBuilder: (context, index) {
-                                      return Padding(
-                                        padding: const EdgeInsets.only(left:8.0),
-                                        child: Text(
-                                          widget.pokemonDetail['prev_evolution'][index]['name'], 
-                                          style: const TextStyle(
-                                            color: Colors.black, 
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.w600
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                )
-                              : const Text(
-                                  "Just Hatched", 
-                                  style: TextStyle(
-                                    color: Colors.black, 
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w600
-                                  ),
-                                ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: width * 0.3,
-                              child: const Text(
-                                'Next Evolution', 
-                                style: TextStyle(
-                                  color: Colors.blueGrey, 
-                                  fontSize: 17
-                                ),
-                              ),
-                            ),
-                            Container(
-                              child: widget.pokemonDetail['next_evolution'] != null 
-                              ? SizedBox(
-                                  height: 20,
-                                  width: width * 0.55,
-                                  child: ListView.builder(
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: widget.pokemonDetail['next_evolution'].length,
-                                    itemBuilder: (context, index) {
-                                      return Padding(
-                                        padding: const EdgeInsets.only(right:8.0),
-                                        child: Text(
-                                          widget.pokemonDetail['next_evolution'][index]['name'], 
-                                          style: const TextStyle(
-                                            color: Colors.black, 
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.w600
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                )
-                              : const Text(
-                                  "Maxed Out", 
-                                  style: TextStyle(
-                                    color: Colors.black, 
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w600
-                                  ),
-                                ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+            _PokemonInformation(
+              width: width, 
+              height: height, 
+              widget: widget
             ),
             Positioned(
               top: height * 0.17,
@@ -338,6 +124,242 @@ class _DetailsScreenState extends State<DetailsScreen> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _PokemonInformation extends StatelessWidget {
+  const _PokemonInformation({
+    Key? key,
+    required this.width,
+    required this.height,
+    required this.widget
+  }) : super(key: key);
+
+  final double width;
+  final double height;
+  final DetailsScreen widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      bottom: 0,
+      child: Container(
+        width: width,
+        height: height * 0.6,
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+          color: Colors.white
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              const SizedBox(height: 50),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: width * 0.3,
+                      child: const Text(
+                        'Name: ',
+                        style: TextStyle(
+                          color: Colors.blueGrey,
+                          fontSize: 17
+                        ),
+                      ),
+                    ),
+                    Text(
+                      widget.pokemonDetail['name'],
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: width * 0.3,
+                      child: const Text(
+                        'Weight: ',
+                        style: TextStyle(
+                          color: Colors.blueGrey,
+                          fontSize: 17
+                        ),
+                      ),
+                    ),
+                    Text(
+                      widget.pokemonDetail['weight'],
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: width * 0.3,
+                      child: const Text(
+                        'Spawn Time: ',
+                        style: TextStyle(
+                          color: Colors.blueGrey,
+                          fontSize: 17
+                        ),
+                      ),
+                    ),
+                    Text(
+                      widget.pokemonDetail['spawn_time'],
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: width * 0.3,
+                      child: const Text(
+                        'Weakness: ',
+                        style: TextStyle(
+                          color: Colors.blueGrey,
+                          fontSize: 17
+                        ),
+                      ),
+                    ),
+                    Text(
+                      widget.pokemonDetail['weakness'] != null 
+                        ? widget.pokemonDetail['weakness'][0].join(", ")
+                        : "Not defined",
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: width * 0.3,
+                      child: const Text(
+                        'Pre Evolution', 
+                        style: TextStyle(
+                          color: Colors.blueGrey, 
+                          fontSize: 17
+                        ),
+                      ),
+                    ),
+                    Container(
+                      child: widget.pokemonDetail['prev_evolution'] != null
+                      ? SizedBox(
+                          height: 20,
+                          width: width * 0.55,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: widget.pokemonDetail['prev_evolution'].length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.only(left:8.0),
+                                child: Text(
+                                  widget.pokemonDetail['prev_evolution'][index]['name'], 
+                                  style: const TextStyle(
+                                    color: Colors.black, 
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w600
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        )
+                      : const Text(
+                          "Just Hatched", 
+                          style: TextStyle(
+                            color: Colors.black, 
+                            fontSize: 17,
+                            fontWeight: FontWeight.w600
+                          ),
+                        ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: width * 0.3,
+                      child: const Text(
+                        'Next Evolution', 
+                        style: TextStyle(
+                          color: Colors.blueGrey, 
+                          fontSize: 17
+                        ),
+                      ),
+                    ),
+                    Container(
+                      child: widget.pokemonDetail['next_evolution'] != null 
+                      ? SizedBox(
+                          height: 20,
+                          width: width * 0.55,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: widget.pokemonDetail['next_evolution'].length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.only(right:8.0),
+                                child: Text(
+                                  widget.pokemonDetail['next_evolution'][index]['name'], 
+                                  style: const TextStyle(
+                                    color: Colors.black, 
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w600
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        )
+                      : const Text(
+                          "Maxed Out", 
+                          style: TextStyle(
+                            color: Colors.black, 
+                            fontSize: 17,
+                            fontWeight: FontWeight.w600
+                          ),
+                        ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
