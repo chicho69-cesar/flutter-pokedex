@@ -102,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           'assets/images/pokeball.png',
                                           height: 100,
                                           fit: BoxFit.fitHeight,
-                                        )
+                                        ),
                                       ),
                                       Positioned(
                                         bottom: 5,
@@ -111,11 +111,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                           tag: index,
                                           child: CachedNetworkImage(
                                             imageUrl: pokedex![index]['img'],
-                                            height: 100,
+                                            height: 150,
                                             fit: BoxFit.fitHeight,
                                             placeholder: (context, url) => const Center(
                                               child: CircularProgressIndicator(),
                                             ),
+                                            errorWidget: (context, url, error) => Image.asset(
+                                            'assets/images/pokeball.png',
+                                            height: 150,
+                                            fit: BoxFit.fitHeight,
+                                          ),
                                           ),
                                         )
                                       ),
@@ -171,6 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               onTap: () {
+                                print("$index - ${pokedex![index]}");
                                 Navigator.push(context, MaterialPageRoute(builder: (_) => DetailsScreen(
                                   heroTag: index, 
                                   pokemonDetail: pokedex![index], 
